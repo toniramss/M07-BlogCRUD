@@ -13,7 +13,7 @@ $db = (new Database())->getConnection();
 $post = new Post($db);
 $postController = new PostController();
 
-$resultado = $post->readFromId($idPost);
+$resultado = $post->selectFromId($idPost);
 
 //var_dump($resultado);
 
@@ -48,7 +48,7 @@ $listaCommentsFromPost = $comment->selectAllCommentsFromPost($idPost);
 
 
     <form action="../../controllers/CommentController.php" method="POST" class="bg-gray-100 border border-gray-300 rounded-lg p-4 mb-4 shadow">
-        <input type="hidden" value="<?php echo ($_SESSION['idUserLogIn']) ?>" name="idUserLogin">
+        <input type="hidden" value="<?php echo ($_SESSION['idUser']) ?>" name="idUser">
         <input type="hidden" value="<?php echo ($idPost) ?>" name="idPost">
 
         

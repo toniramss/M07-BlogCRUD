@@ -47,7 +47,7 @@ if (isset($_POST['insert'])) {
     if ($_POST['contrasenya'] === $userResponse->getPassword()) {
         //La contrasenya es correcta
 
-        $_SESSION['idUserLogIn'] = $userResponse->getIdUser();
+        $_SESSION['idUser'] = $userResponse->getIdUser();
 
         switch ($userResponse->getIdRole()) {
             case 1:

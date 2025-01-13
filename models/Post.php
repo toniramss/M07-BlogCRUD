@@ -6,7 +6,7 @@ class Post
     private $conn;
     private $table_name = 'posts';
     public $idPost;
-    public $userName;
+    public $idUser;
     public $title;
     public $description;
     public function __construct($db)
@@ -23,7 +23,7 @@ class Post
         $stmt->execute();
         return $stmt;
     }
-    public function readFromId($idPost)
+    public function selectFromId($idPost)
     {
         //$query = 'SELECT * FROM ' . $this->table_name .  ' ORDER BY idUser DESC';
         $query = "SELECT p.idPost, p.idUser, p.title, u.userName, p.description 
@@ -72,23 +72,24 @@ class Post
     return $sentencia;
     }*/
 
-    public function create($title, $idUser, $description)
+    public function create()
 {
     try {
         $query = "INSERT INTO Posts (idUser, title, description) VALUES (:idUser, :title, :description)";
         $stmt = $this->conn->prepare($query);
 
         // Enlazar los parámetros
-        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
-        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
-        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':idUser', $this->idUser, PDO::PARAM_INT);
+        $stmt->bindParam(':title', $this->title, PDO::PARAM_STR);
+        $stmt->bindParam(':description', $this->description, PDO::PARAM_STR);
 
         $stmt->execute();
 
         $_SESSION['mensaje'] = "Registro insertado correctamente";
         return true;
+
     } catch (PDOException $e) {
-        $_SESSION['error'] = $e->getMessage(); // O utiliza errorMessage($e) si está definida
+        $_SESSION['error'] = $e->getMessage();
         return false;
     }
 }
@@ -136,6 +137,86 @@ class Post
             $_SESSION['error'] = $e->getMessage();
             return false;
         }
+    }
+
+    /**
+     * Get the value of idPost
+     */ 
+    public function getIdPost()
+    {
+        return $this->idPost;
+    }
+
+    /**
+     * Set the value of idPost
+     *
+     * @return  self
+     */ 
+    public function setIdPost($idPost)
+    {
+        $this->idPost = $idPost;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of title
+     */ 
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set the value of title
+     *
+     * @return  self
+     */ 
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of description
+     */ 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of description
+     *
+     * @return  self
+     */ 
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idUser
+     */ 
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set the value of idUser
+     *
+     * @return  self
+     */ 
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
     }
 }
 

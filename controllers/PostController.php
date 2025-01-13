@@ -59,17 +59,17 @@ class PostController
 
 public function updateView()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $idPost = $_POST['idPost'] ?? null;
-            $title = $_POST['title'] ?? '';
-            $description = $_POST['description'] ?? '';
+        
+            //$idPost = $_POST['idPost'] ?? null;
+            //$title = $_POST['title'] ?? '';
+            //$description = $_POST['description'] ?? '';
 
-            if (empty($idPost) || empty($title) || empty($description)) {
+            if (empty($this->model->title) || empty($this->model->description)) {
                 $_SESSION['error'] = "Todos los campos son obligatorios.";
                 return;
             }
 
-            if ($this->model->update($idPost, $title, $description)) {
+            if ($this->model->update($this->model->idPost, $this->model->title, $this->model->description)) {
                 $_SESSION['mensaje'] = "Post actualizado correctamente.";
             } else {
                 $_SESSION['error'] = "Error al actualizar el post.";
@@ -77,7 +77,7 @@ public function updateView()
 
             header('Location: ../../views/home/index.php');
             exit();
-        }
+        
     }
 
     public function deleteView()
@@ -99,9 +99,33 @@ public function updateView()
             exit();
         }
     }
+    public function setModel($model)
+    {
+        $this->model = $model;
 
+        return $this;
+    }
+
+    
 }
 
+
+if (isset($_POST['crearPublicacion'])) {
+        
+    $db = (new Database())->getConnection();
+
+    $post = new Post($db);
+
+    $post->setIdUser($_POST['idUsuario']);
+    $post->setTitle($_POST['tituloNuevoPost']);
+    $post->setDescription($_POST['descripcionNuevoPost']);
+
+    $post->create();
+
+    header('Location: ../../views/home/index.php');
+    exit();
+    
+}
 
 
 
@@ -120,5 +144,12 @@ class PostController {
 
         include('../views/home/index.php');
     }
-}*/
+
+    /**
+     * Set the value of model
+     *
+     * @return  self
+     */ 
+    
+
 ?>

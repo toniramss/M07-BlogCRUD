@@ -1,11 +1,11 @@
 <?php
 
 class Database {
-    private $host = '172.17.131.35';
-    //private $host = 'localhost:3308';
+    //private $host = '172.17.131.35';
+    private $host = 'localhost:3308';
     private $db_name = 'blog_db';
-    private $username = 'Toni';
-    //private $username = 'root';
+    //private $username = 'Toni';
+    private $username = 'root';
     private $password = '1234';
     public $conn;
     public function getConnection() {

@@ -33,7 +33,7 @@ if (isset($_POST['insertComment'])) {
 
     $comment = new Comment($db);
 
-    $comment->insertComment($_POST['idUserLogin'], $_POST['idPost'], $_POST['description']);
+    $comment->insertComment($_POST['idUser'], $_POST['idPost'], $_POST['description']);
 
     if (isset($_SESSION['error'])) {
 
