@@ -55,7 +55,7 @@ $resultado = $postController->index();
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-blue-200 border rounded-lg shadow-lg p-6">
+            <div class="bg-blue-200 border rounded-lg shadow-lg p-6 border-8 border-green-500 p-4">
                 <form action="../../controllers/PostController.php" method="POST">
 
                     <h2 class="text-2xl font-bold text-gray-800 mb-2 text-center">Crear nueva publicación</h2>
