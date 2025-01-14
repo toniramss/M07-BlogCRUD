@@ -26,31 +26,34 @@ $listaPosts = $post->read();
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="m-5">
+<body class="m-5" style="background-image: url('../../public/img/fondo_dashboard.jpg');">
 
 
 
     <?php require_once('../../config/mensajes.php') ?>
 
 
-    <div class="w-full">
+    <header class="bg-blue-600 text-white py-6 flex justify-between items-center px-8">
+        <h1 class="text-4xl font-bold">Blog de Comida</h1>
 
-        <a href="dashboard.php">
-            <img src="">
-        </a>
+        <div class="flex gap-4">
+            <form action="index.php" method="POST">
+                <button type="submit"
+                    class="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition duration-200">
+                    Publicaciones
+                </button>
+            </form>
 
-        <a href="index.php" class="flex-right">
-            Publicaciones
-        </a>
+            <form action="../../server/logout.php" method="POST">
+                <button type="submit"
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 transition duration-200">
+                    Cerrar Sesión
+                </button>
+            </form>
+        </div>
+    </header>
 
-        <a href="">
-            Cerrar sesión
-        </a>
-
-
-    </div>
-
-
+    <br>
 
     <h1 class="text-4xl font-semibold text-gray-800 mb-4 text-center">Gestión de usuarios</h1>
 
