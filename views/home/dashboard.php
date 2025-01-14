@@ -26,23 +26,22 @@ $listaPosts = $post->read();
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="m-5" style="background-image: url('../../public/img/fondo_dashboard.jpg');">
+<body class="m-5">
 
 
 
     <?php require_once('../../config/mensajes.php') ?>
 
 
-    <header class="bg-blue-600 text-white py-6 flex justify-between items-center px-8">
-        <h1 class="text-4xl font-bold">Blog de Comida</h1>
+    <div class="w-full">
 
-        <div class="flex gap-4">
-            <form action="index.php" method="POST">
-                <button type="submit"
-                    class="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition duration-200">
-                    Publicaciones
-                </button>
-            </form>
+        <a href="dashboard.php">
+            <img src="">
+        </a>
+
+        <a href="index.php" class="flex-right">
+            Publicaciones
+        </a>
 
             <form action="../../server/logout.php" method="POST">
                 <button type="submit"
@@ -53,7 +52,7 @@ $listaPosts = $post->read();
         </div>
     </header>
 
-    <br>
+
 
     <h1 class="text-4xl font-semibold text-gray-800 mb-4 text-center">Gestión de usuarios</h1>
 
@@ -70,8 +69,10 @@ $listaPosts = $post->read();
                     <th class="px-6 py-3 text-left border-b text-center sticky top-0 bg-gray-200">Contraseña</th>
                     <th class="px-6 py-3 text-left border-b text-center sticky top-0 bg-gray-200">Rol</th>
                     <th class="px-6 py-3 text-center border-b text-center sticky top-0 bg-gray-200">Editar</th>
-                    <th class="px-6 py-3 text-center border-b text-center sticky top-0 bg-gray-200">Cambiar contraseña</th>
-                    <th class="px-6 py-3 text-center border-b text-center sticky top-0 bg-gray-200">Eliminar usuario</th>
+                    <th class="px-6 py-3 text-center border-b text-center sticky top-0 bg-gray-200">Cambiar contraseña
+                    </th>
+                    <th class="px-6 py-3 text-center border-b text-center sticky top-0 bg-gray-200">Eliminar usuario
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -121,9 +122,11 @@ $listaPosts = $post->read();
                     <th class="px-6 py-3 text-left border-b text-center sticky top-0 bg-gray-200">Usuario</th>
                     <th class="px-6 py-3 text-left border-b text-center sticky top-0 bg-gray-200">Título</th>
                     <th class="px-6 py-3 text-left border-b text-center sticky top-0 bg-gray-200">Descripción</th>
-            
+
+                    <th class="px-6 py-3 text-center border-b text-center sticky top-0 bg-gray-200">Ver comentarios</th>
                     <th class="px-6 py-3 text-center border-b text-center sticky top-0 bg-gray-200">Editar</th>
-                    <th class="px-6 py-3 text-center border-b text-center sticky top-0 bg-gray-200">Eliminar usuario</th>
+                    <th class="px-6 py-3 text-center border-b text-center sticky top-0 bg-gray-200">Eliminar usuario
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -131,9 +134,15 @@ $listaPosts = $post->read();
                     <tr class="bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
                         <td class="px-6 py-4 border-b text-center"><?php echo $post['idPost'] ?></td>
                         <td class="px-6 py-4 border-b text-center"><?php echo $post['userName'] ?></td>
-                        
+
                         <td class="px-6 py-4 border-b text-center"><?php echo $post['title'] ?></td>
                         <td class="px-6 py-4 border-b text-center "><?php echo $post['description']; ?></td>
+                        <td class="px-6 py-4 border-b text-center">
+                            <a href="commentsView.php?id=<?php echo $post['idPost']; ?>">
+                                <button
+                                    class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none transition">Comentarios</button>
+                            </a>
+                        </td>
                         <td class="px-6 py-4 border-b text-center">
                             <a href="../home/post/formModifyPost.php?id=<?php echo $post['idPost']; ?>">
                                 <button
