@@ -31,13 +31,23 @@ $resultado = $postController->index();
     <header class="bg-blue-600 text-white py-6 flex justify-between items-center px-8">
         <h1 class="text-4xl font-bold">Blog de Comida</h1>
 
-        <form action="../../server/logout.php" method="POST">
-            <button type="submit"
-                class="bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 transition duration-200">
-                Cerrar Sesión
-            </button>
-        </form>
+        <div class="flex gap-4">
+            <form action="dashboard.php" method="POST">
+                <button type="submit"
+                    class="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition duration-200">
+                    Panel de administración
+                </button>
+            </form>
+
+            <form action="../../server/logout.php" method="POST">
+                <button type="submit"
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 transition duration-200">
+                    Cerrar Sesión
+                </button>
+            </form>
+        </div>
     </header>
+
 
     <?php
     if (isset($_SESSION['mensaje'])) {
@@ -64,13 +74,16 @@ $resultado = $postController->index();
 
                     <input hidden type="text" name="idUsuario" value="<?php echo $idUser ?>"></input>
 
-                    <input type="text" class="text-gray-600 mb-4 w-full rounded p-2" placeholder="Título" name="tituloNuevoPost"></input>
+                    <input type="text" class="text-gray-600 mb-4 w-full rounded p-2" placeholder="Título"
+                        name="tituloNuevoPost"></input>
 
-                    <textarea class="text-gray-500 w-full h-[100px] rounded p-2" placeholder="Escribe aqui..." name="descripcionNuevoPost"></textarea>
-                    
+                    <textarea class="text-gray-500 w-full h-[100px] rounded p-2" placeholder="Escribe aqui..."
+                        name="descripcionNuevoPost"></textarea>
+
                     <br><br>
 
-                    <button type="submit" name="crearPublicacion" class="bg-green-500 text-black font-bold py-2 px-4 mr-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50">Publicar</button>
+                    <button type="submit" name="crearPublicacion"
+                        class="bg-green-500 text-black font-bold py-2 px-4 mr-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50">Publicar</button>
                 </form>
 
 

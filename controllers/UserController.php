@@ -148,4 +148,34 @@ if (isset($_POST['insert'])) {
     header('Location: ../views/home/dashboard.php');
     exit();
 
+} else if (isset($_POST['register'])) {
+
+    $db = (new Database())->getConnection();
+
+    $user = new User($db);
+
+    $user->setUserName($_POST['userName']);
+    $user->setName($_POST['name']);
+    $user->setSurname($_POST['surname']);
+    $user->setEmail($_POST['email']);
+    $user->setPassword($_POST['password']);
+    $user->setIdRole($_POST['idRole']);
+
+
+    //Cuando enviamos por post tiene que tener en name el nombre de la variable que queramos enviar
+    $user->insertUser($user);
+
+    //Si se produce un error lo mostramos
+    if (isset($_SESSION['error'])) {
+
+        //Si todo funciona correctamente mostramos todos los usuarios con el nuevo al final
+    } else {
+
+        //Redireccionar a la lista de usuarios para visualizar el que se ha creado
+        header('Location: ../views/home/login.php');
+        exit();
+
+    }
+
+
 }

@@ -32,41 +32,48 @@ $listaCommentsFromPost = $comment->selectAllCommentsFromPost($idPost);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> <?php echo $resultado['title'] ?> </title>
+    <title><?php echo $resultado['title']; ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-cover bg-center bg-no-repeat min-h-screen flex flex-col items-center py-8" style="background-image: url('../../public/img/fondo_post.jpg');">
 
-    <?php require_once('../../config/mensajes.php') ?>
+    <?php require_once('../../config/mensajes.php'); ?>
 
-    <h5> Usuario: <?php echo $resultado['userName'] ?> </h5>
-
-    <h1> Titulo: <?php echo $resultado['title'] ?> </h1>
-
-    <h3> Descripción: <?php echo $resultado['description'] ?> </h3>
-
-
-    <form action="../../controllers/CommentController.php" method="POST" class="bg-gray-100 border border-gray-300 rounded-lg p-4 mb-4 shadow">
-        <input type="hidden" value="<?php echo ($_SESSION['idUser']) ?>" name="idUser">
-        <input type="hidden" value="<?php echo ($idPost) ?>" name="idPost">
-
-        
-
-        <textarea class=" w-full text-lg font-semibold text-blue-600" placeholder="Comentar..." name="description" required></textarea>
-        <button type="submit" name="insertComment">Enviar</button>
-    </form>
-
-    <?php foreach ($listaCommentsFromPost as $comment): ?>
-
-        <div class="bg-gray-100 border border-gray-300 rounded-lg p-4 mb-4 shadow">
-            <h4 class="text-lg font-semibold text-blue-600">Usuario: <?php echo htmlspecialchars($comment['userName']) ?>
-            </h4>
-            <p class="text-gray-700 mt-2"><?php echo htmlspecialchars($comment['description']) ?></p>
+    <div class="bg-gradient-to-r from-gray-300 to-gray-500 rounded-lg shadow-lg p-6 max-w-4xl w-full">
+        <!-- Header Section -->
+        <div class="mb-6">
+            <h5 class="text-xl font-semibold text-gray-700">Usuario: <span class="text-blue-600"><?php echo htmlspecialchars($resultado['userName']); ?></span></h5>
+            <h1 class="text-3xl font-bold text-gray-900 mt-2"><?php echo htmlspecialchars($resultado['title']); ?></h1>
+            <h3 class="text-gray-600 mt-4"><?php echo htmlspecialchars($resultado['description']); ?></h3>
         </div>
 
+        <!-- Form Section -->
+        <form action="../../controllers/CommentController.php" method="POST" class="mb-6">
+            <input type="hidden" value="<?php echo htmlspecialchars($_SESSION['idUser']); ?>" name="idUser">
+            <input type="hidden" value="<?php echo htmlspecialchars($idPost); ?>" name="idPost">
 
-    <?php endforeach; ?>
+            <textarea 
+                class="w-full p-4 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                placeholder="Comentar..." name="description" rows="4" required></textarea>
+
+            <div class="flex justify-between items-center mt-4">
+                <a href="index.php" class="text-blue-600 hover:text-blue-800 transition duration-200">Volver atrás</a>
+                <button type="submit" name="insertComment"
+                    class="bg-blue-500 text-white py-2 px-6 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-200">
+                    Enviar
+                </button>
+            </div>
+        </form>
+
+        <!-- Comments Section -->
+        <?php foreach ($listaCommentsFromPost as $comment): ?>
+            <div class="bg-gray-100 border border-gray-300 rounded-lg p-4 mb-4 shadow hover:shadow-lg transition duration-200">
+                <h4 class="text-lg font-semibold text-blue-600">Usuario: <?php echo htmlspecialchars($comment['userName']); ?></h4>
+                <p class="text-gray-700 mt-2"><?php echo htmlspecialchars($comment['description']); ?></p>
+            </div>
+        <?php endforeach; ?>
+    </div>
 
 </body>
 

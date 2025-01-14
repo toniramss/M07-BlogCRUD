@@ -29,75 +29,68 @@ $listaUserRoles = $userRole->selectAllRoles();
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gradient-to-r from-yellow-500 to-purple-400 min-h-screen flex items-center justify-center">
+<body class="bg-gradient-to-r from-blue-500 to-green-400 min-h-screen flex items-center justify-center">
 
     <?php require_once('../../config/mensajes.php') ?>
 
-    <div class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 to-yellow-400 p-6">
+    <div class="flex flex-col items-center justify-center min-h-screen p-6">
         <form action="../../controllers/UserController.php" method="POST"
-            class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+            class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md transform transition hover:scale-105 duration-300">
 
-            <h1 class="text-center font-medium text-4xl">Crear usuario</h1>
+            <h1 class="text-center font-medium text-4xl text-gray-800 mb-6">Crear Usuario</h1>
 
-            <br>
-
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center mb-6">
                 <img class="w-1/2" src="../../public/img/usuario.png" alt="Usuario">
             </div>
-            <br>
 
             <div class="mb-4">
                 <label class="block text-gray-700 font-medium mb-2">Nombre de usuario:</label>
                 <input type="text" id="textViewNombreUsuario" name="userName"
-                    class="w-full p-2 border border-gray-300 rounded-lg text-gray-600">
+                    class="w-full p-3 border border-gray-300 rounded-lg text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 font-medium mb-2">Contraseña:</label>
                 <input type="password" id="editTextPassword1" name="password"
-                    class="w-full p-2 border border-gray-300 rounded-lg text-gray-600">
+                    class="w-full p-3 border border-gray-300 rounded-lg text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 font-medium mb-2">Repetir contraseña:</label>
                 <input type="password" id="editTextPassword2" name="password2"
-                    class="w-full p-2 border border-gray-300 rounded-lg text-gray-600">
+                    class="w-full p-3 border border-gray-300 rounded-lg text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
 
             <div class="mb-4">
                 <label id="textViewErrorContrasenya" class="block text-red-500 text-sm font-medium"></label>
             </div>
 
-            
-            <br><br>
-
             <div class="mb-4">
                 <label class="block text-gray-700 font-medium mb-2">Datos Personales</label>
-                <hr>
+                <hr class="border-gray-300">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 font-medium mb-2">Nombre:</label>
                 <input type="text" id="textViewNombre" name="name" required
-                    class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 font-medium mb-2">Apellido:</label>
                 <input type="text" id="textViewApellido" name="surname" required
-                    class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 font-medium mb-2">E-Mail:</label>
                 <input type="email" id="textViewEmail" name="email" required
-                    class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 font-medium mb-2">Rol de usuario:</label>
-
-                <select name="idRole" class="border border-gray-300 rounded-lg p-2 w-full">
+                <select name="idRole" class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
                     <?php foreach ($listaUserRoles as $userRole): ?>
                         <option value="<?php echo $userRole['idRole']; ?>">
                             <?php echo htmlspecialchars($userRole['name']); ?>
@@ -107,15 +100,15 @@ $listaUserRoles = $userRole->selectAllRoles();
             </div>
 
             <div class="flex justify-center">
-                <button type="submit" name="insert"
-                    class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    Crear usuario
+                <button type="submit" name="register"
+                    class="bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 transform transition duration-300 hover:scale-105">
+                    Crear Usuario
                 </button>
             </div>
 
         </form>
     </div>
-    </div>
+
 </body>
 
 </html>

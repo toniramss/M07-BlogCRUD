@@ -39,7 +39,7 @@
             </div>
 
             <div class="text-center">
-                <a href="register.php" class="text-gray-500 hover:underline">¿Eres nuevo? ¡Crea tu cuenta ahora!</a>
+                <a href="registerNew.php" class="text-gray-500 hover:underline">¿Eres nuevo? ¡Crea tu cuenta ahora!</a>
             </div>
 
             <div class="text-center">
