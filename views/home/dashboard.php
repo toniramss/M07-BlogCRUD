@@ -26,7 +26,7 @@ $listaPosts = $post->read();
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="m-5" style="background-image: url('../../public/img/fondo_dashboard.jpg');">
+<body style="background-image: url('../../public/img/fondo_dashboard.jpg');">
 
     <header class="bg-blue-600 text-white py-6 flex justify-between items-center px-8">
         <h1 class="text-4xl font-bold">Blog de Comida</h1>
@@ -48,6 +48,7 @@ $listaPosts = $post->read();
         </div>
     </header>
 
+    <br>
 
 
     <h1 class="text-4xl font-semibold text-gray-800 mb-4 text-center">Gestión de usuarios</h1>
