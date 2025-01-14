@@ -128,14 +128,10 @@ class Post
             // Enlazar el parámetro
             $stmt->bindParam(':idPost', $idPost, PDO::PARAM_INT);
 
-            if ($stmt->execute()) {
-                return true;
-            } else {
-                return false;
-            }
+            $stmt->execute();
+            
         } catch (PDOException $e) {
             $_SESSION['error'] = $e->getMessage();
-            return false;
         }
     }
 

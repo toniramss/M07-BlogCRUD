@@ -126,6 +126,44 @@ if (isset($_POST['crearPublicacion'])) {
     exit();
     
 }
+else if (isset($_POST['eliminarPublicacion'])) {
+
+    $db = (new Database())->getConnection();
+
+    $post = new Post($db);
+
+    $post->delete($_POST['idPost']);
+
+    header('Location: ../views/home/dashboard.php');
+    exit();
+
+} else if (isset($_POST['redirectDashboard'])) {
+
+    header('Location: ../views/home/dashboard.php');
+    exit();
+
+} else if (isset($_POST['updatePost'])) {
+
+    $db = (new Database())->getConnection();
+
+    $post = new Post($db);
+
+    $post->update($_POST['idPost'], $_POST['title'], $_POST['description']);
+
+
+    if (isset($_SESSION['error'])) {
+
+        header('Location: ../views/home/dashboard.php');
+        exit();
+
+    } else {
+
+        //Redireccionar a la lista de usuarios para visualizar el que se ha creado
+        header('Location: ../views/home/dashboard.php');
+        exit();
+
+    }
+}
 
 
 
