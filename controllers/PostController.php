@@ -122,7 +122,7 @@ if (isset($_POST['crearPublicacion'])) {
 
     $post->create();
 
-    header('Location: ../../views/home/index.php');
+    header('Location: ../views/home/index.php');
     exit();
     
 }
