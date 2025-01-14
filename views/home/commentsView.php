@@ -26,59 +26,66 @@ $listaCommentsFromPost = $comment->selectAllCommentsFromPost($idPost);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comentarios</title>
-    <link href="../../public/output.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-
-    <div class="p-6 bg-white border border-gray-300 rounded-lg shadow-md space-y-4">
+<body class="bg-gradient-to-br from-purple-400 via-pink-500 to-orange-400 min-h-screen flex items-center justify-center py-10">
+    <div class="max-w-5xl w-full p-8 bg-white bg-opacity-90 border border-gray-200 rounded-xl shadow-2xl space-y-8">
         <!-- Detalles del Post -->
-        <div class="flex justify-center space-x-4 gap-4">
-            <div>
-                <h4 class="font-semibold text-lg text-gray-700">Id Post</h4>
-                <h4 class="text-gray-600"><?php echo $postId['idPost'] ?></h4>
-
-                <h4 class="font-semibold text-lg text-gray-700">Usuario</h4>
-                <h4 class="text-gray-600"><?php echo $postId['userName'] ?></h4>
-            </div>
-
-            <div>
-                <h4 class="font-semibold text-lg text-gray-700">Title</h4>
-                <h4 class="text-gray-600"><?php echo $postId['title'] ?></h4>
-
-                <h4 class="font-semibold text-lg text-gray-700">Description</h4>
-                <h4 class="text-gray-600"><?php echo $postId['description'] ?></h4>
+        <div class="border-b pb-6">
+            <h2 class="text-3xl font-bold text-gray-800">Detalles del Post</h2>
+            <div class="grid grid-cols-2 gap-6 mt-6">
+                <div>
+                    <p class="text-sm text-gray-500 font-semibold">ID Post</p>
+                    <p class="text-lg text-gray-800 font-medium"><?php echo $postId['idPost'] ?></p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500 font-semibold">Usuario</p>
+                    <p class="text-lg text-gray-800 font-medium"><?php echo $postId['userName'] ?></p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500 font-semibold">Título</p>
+                    <p class="text-lg text-gray-800 font-medium"><?php echo $postId['title'] ?></p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500 font-semibold">Descripción</p>
+                    <p class="text-lg text-gray-800 font-medium"><?php echo $postId['description'] ?></p>
+                </div>
             </div>
         </div>
 
-
-        <!-- Tabla de comentarios -->
-        <div class="mt-6">
-            <h4 class="font-bold text-xl text-gray-800 mb-4">Comentarios</h4>
-            <table class="table-auto w-full bg-gray-100 border border-gray-300 rounded-lg overflow-hidden">
-                <thead class="bg-gray-200 text-gray-700">
-                    <tr>
-                        <th class="px-6 py-3 text-left">Usuario</th>
-                        <th class="px-6 py-3 text-left">Comentario</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                    <?php foreach ($listaCommentsFromPost as $comment) { ?>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 text-gray-700"><?php echo $comment['userName'] ?></td>
-                            <td class="px-6 py-4 text-gray-600"><?php echo $comment['description'] ?></td>
+        <!-- Tabla de Comentarios -->
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Comentarios</h2>
+            <div class="overflow-hidden border border-gray-300 rounded-lg shadow-sm">
+                <table class="w-full text-left table-auto bg-gradient-to-br from-white via-gray-100 to-gray-200">
+                    <thead class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
+                        <tr>
+                            <th class="px-6 py-3 text-sm font-semibold">Usuario</th>
+                            <th class="px-6 py-3 text-sm font-semibold">Comentario</th>
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="divide-y divide-gray-300">
+                        <?php foreach ($listaCommentsFromPost as $comment) { ?>
+                            <tr class="hover:bg-purple-100">
+                                <td class="px-6 py-4 text-gray-800 font-medium"><?php echo $comment['userName'] ?></td>
+                                <td class="px-6 py-4 text-gray-600"><?php echo $comment['description'] ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Botón Volver -->
+        <div class="flex justify-end mt-6">
+            <a href="dashboard.php"
+                class="text-white bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 font-medium px-6 py-2 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                Volver Atrás
+            </a>
         </div>
     </div>
-
-
-
-
-
 </body>
 
 </html>
+
