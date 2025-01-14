@@ -107,14 +107,11 @@ class Post
             $stmt->bindParam(':title', $title, PDO::PARAM_STR);
             $stmt->bindParam(':description', $description, PDO::PARAM_STR);
 
-            if ($stmt->execute()) {
-                return true;
-            } else {
-                return false;
-            }
+            $stmt->execute();
+
         } catch (PDOException $e) {
             $_SESSION['error'] = $e->getMessage();
-            return false;
+            
         }
     }
 

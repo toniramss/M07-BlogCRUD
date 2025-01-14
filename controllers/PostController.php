@@ -39,45 +39,45 @@ class PostController
     }*/
 
     public function createView()
-{
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $title = $_POST['title'] ?? '';
-        $idUser = $_POST['idUser'] ?? 0;
-        $description = $_POST['description'] ?? '';
-
-        if (empty($title) || empty($description) || !$idUser) {
-            $_SESSION['error'] = "Todos los campos son obligatorios.";
-            return;
-        }
-
-        $this->model->create($title, $idUser, $description);
-
-        header('Location: ../../views/home/index.php');
-        exit();
-    }
-}
-
-public function updateView()
     {
-        
-            //$idPost = $_POST['idPost'] ?? null;
-            //$title = $_POST['title'] ?? '';
-            //$description = $_POST['description'] ?? '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = $_POST['title'] ?? '';
+            $idUser = $_POST['idUser'] ?? 0;
+            $description = $_POST['description'] ?? '';
 
-            if (empty($this->model->title) || empty($this->model->description)) {
+            if (empty($title) || empty($description) || !$idUser) {
                 $_SESSION['error'] = "Todos los campos son obligatorios.";
                 return;
             }
 
-            if ($this->model->update($this->model->idPost, $this->model->title, $this->model->description)) {
-                $_SESSION['mensaje'] = "Post actualizado correctamente.";
-            } else {
-                $_SESSION['error'] = "Error al actualizar el post.";
-            }
+            $this->model->create($title, $idUser, $description);
 
             header('Location: ../../views/home/index.php');
             exit();
-        
+        }
+    }
+
+    public function updateView()
+    {
+
+        //$idPost = $_POST['idPost'] ?? null;
+        //$title = $_POST['title'] ?? '';
+        //$description = $_POST['description'] ?? '';
+
+        if (empty($this->model->title) || empty($this->model->description)) {
+            $_SESSION['error'] = "Todos los campos son obligatorios.";
+            return;
+        }
+
+        if ($this->model->update($this->model->idPost, $this->model->title, $this->model->description)) {
+            $_SESSION['mensaje'] = "Post actualizado correctamente.";
+        } else {
+            $_SESSION['error'] = "Error al actualizar el post.";
+        }
+
+        header('Location: ../../views/home/index.php');
+        exit();
+
     }
 
     public function deleteView()
@@ -106,12 +106,12 @@ public function updateView()
         return $this;
     }
 
-    
+
 }
 
 
 if (isset($_POST['crearPublicacion'])) {
-        
+
     $db = (new Database())->getConnection();
 
     $post = new Post($db);
@@ -124,7 +124,46 @@ if (isset($_POST['crearPublicacion'])) {
 
     header('Location: ../views/home/index.php');
     exit();
-    
+
+} else if (isset($_POST['eliminarPublicacion'])) {
+
+    $db = (new Database())->getConnection();
+
+    $post = new Post($db);
+
+    $post->delete($_POST['idPost']);
+
+    header('Location: ../views/home/dashboard.php');
+    exit();
+
+} else if (isset($_POST['redirectDashboard'])) {
+
+    header('Location: ../views/home/dashboard.php');
+    exit();
+
+} else if (isset($_POST['updatePost'])) {
+
+    $db = (new Database())->getConnection();
+
+    $post = new Post($db);
+
+    $post->update($_POST['idPost'], $_POST['title'], $_POST['description']);
+
+
+    if (isset($_SESSION['error'])) {
+
+        header('Location: ../views/home/dashboard.php');
+        exit();
+
+    } else {
+
+        //Redireccionar a la lista de usuarios para visualizar el que se ha creado
+        header('Location: ../views/home/dashboard.php');
+        exit();
+
+    }
+
+
 }
 
 
@@ -149,7 +188,7 @@ class PostController {
      * Set the value of model
      *
      * @return  self
-     */ 
-    
+     */
+
 
 ?>

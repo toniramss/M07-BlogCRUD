@@ -87,7 +87,6 @@ if (isset($_POST['insert'])) {
 
     if (isset($_SESSION['error'])) {
 
-        //Si todo funciona correctamente mostramos todos los usuarios con el nuevo al final
         header('Location: ../views/user/form/ModifyUser.php?id=' . $user->getIdUser());
         exit();
 
